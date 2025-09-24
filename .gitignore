@@ -1,3 +1,26 @@
 build/*
 .trace
 .coverage*
+
+cat >> .gitignore << 'EOF'
+# Node / frontend
+node_modules/
+notes_ui/node_modules/
+dist/
+build/
+notes_ui/dist/
+notes_ui/build/
+
+# Env / secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+id_*
+
+# OS / IDE
+.DS_Store
+.idea/
+.vscode/
+EOF
