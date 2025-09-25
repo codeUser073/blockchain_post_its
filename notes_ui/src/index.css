@@ -66,3 +66,125 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+:root {
+    --fridge: #e9f1f5;
+    --fridge-edge: #cfd9de;
+    --handle: #9aa5ad;
+    --magnet: #ea4335;
+    --magnet-2: #34a853;
+    --magnet-3: #4285f4;
+    --pin: #3e3e3e;
+    --note-shadow: rgba(0,0,0,0.12);
+    --note-text: #222;
+    --accent: #1f2937;
+    font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+body, #root {
+    margin: 0; min-height: 100vh; background: #f5f7fb;
+}
+
+.fridge-container {
+    max-width: 1100px; margin: 0 auto; padding: 24px;
+}
+
+.fridge-header {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 16px;
+}
+
+.fridge-header h1 {
+    margin: 0; color: var(--accent); letter-spacing: 0.4px;
+}
+
+.error-banner, .connect-wallet-hint, .empty-state {
+    background: #fff3cd; border: 1px solid #ffe69c; color: #7a5d00;
+    padding: 10px 12px; border-radius: 8px; margin: 12px 0;
+}
+
+.fridge-door {
+    position: relative;
+    border-radius: 18px;
+    background: linear-gradient(180deg, var(--fridge), #dfe8ec);
+    border: 2px solid var(--fridge-edge);
+    padding: 26px;
+    min-height: 70vh;
+    box-shadow: 0 10px 24px rgba(0,0,0,0.08), inset 0 0 0 6px #f7fbfd;
+}
+
+.fridge-handle {
+    position: absolute; right: 18px; top: 50px;
+    width: 14px; height: 140px; border-radius: 8px;
+    background: linear-gradient(180deg, #d8dee3, #aeb8bf);
+    box-shadow: inset 0 0 2px rgba(0,0,0,0.25);
+}
+
+.magnet { position: absolute; width: 18px; height: 18px; border-radius: 50%; box-shadow: 0 2px 4px rgba(0,0,0,0.2); }
+.magnet-1 { background: var(--magnet); top: 14px; left: 18px; }
+.magnet-2 { background: var(--magnet-2); top: 14px; left: 48px; }
+.magnet-3 { background: var(--magnet-3); top: 14px; left: 78px; }
+
+.notes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 18px;
+    margin-top: 30px;
+}
+
+.sticky-note {
+    position: relative;
+    padding: 14px 12px 42px;
+    border-radius: 6px;
+    color: var(--note-text);
+    box-shadow: 0 12px 20px var(--note-shadow);
+    transform-origin: center;
+    transition: transform 0.12s ease;
+}
+
+.sticky-note:hover { transform: scale(1.02) rotate(var(--tilt, 0deg)); }
+
+.note-pin {
+    position: absolute; top: -8px; left: 50%; transform: translateX(-50%);
+    width: 14px; height: 14px; background: var(--pin); border-radius: 50%;
+    box-shadow: 0 2px 0 rgba(0,0,0,0.35);
+}
+
+.note-content p {
+    margin: 0 0 10px; white-space: pre-wrap; word-break: break-word;
+}
+
+.note-toolbar {
+    display: flex; align-items: center; justify-content: space-between; gap: 8px;
+}
+
+.edit-btn, .save-btn, .cancel-btn, .add-note-btn {
+    appearance: none; border: none; border-radius: 8px; padding: 8px 10px;
+    background: #111827; color: white; cursor: pointer; font-weight: 600;
+}
+
+.cancel-btn { background: #6b7280; }
+.add-note-btn { margin-top: 8px; }
+
+.color-dots { display: flex; gap: 6px; }
+.color-dot {
+    width: 16px; height: 16px; border-radius: 50%;
+    border: 1px solid rgba(0,0,0,0.25); cursor: pointer;
+}
+
+.note-textarea, .add-note-textarea {
+    width: 100%; min-height: 90px; border-radius: 8px; border: 1px solid #cbd5e1;
+    padding: 8px; resize: vertical; background: #fff; font: inherit;
+}
+
+.add-note-section {
+    grid-column: 1 / -1;
+    background: rgba(255,255,255,0.8);
+    border: 1px solid #e5e7eb; border-radius: 12px; padding: 12px;
+}
+
+.error-message {
+    color: #b42318; margin-top: 8px; font-weight: 600;
+}
+
