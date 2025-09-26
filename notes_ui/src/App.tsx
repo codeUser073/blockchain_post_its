@@ -32,7 +32,7 @@ export default function App() {
     // Ensure module/type path matches your Move code:
     const noteType = useMemo(() => {
         if (!PACKAGE_ID) return '';
-        return `${PACKAGE_ID}::notes_app::Note`;
+        return `${PACKAGE_ID}::notes::Note`;
     }, []);
 
     // Helper: local color store keyed by objectId
@@ -78,7 +78,7 @@ export default function App() {
         mutationFn: async (content: string) => {
             const tx = new Transaction();
             tx.moveCall({
-                target: `${PACKAGE_ID}::notes_app::create_note`,
+                target: `${PACKAGE_ID}::notes::create_note`,
                 arguments: [tx.pure.string(content)],
             });
             return await signAndExecute({ transaction: tx, chain: 'sui:testnet' });
@@ -93,7 +93,7 @@ export default function App() {
         mutationFn: async ({ id, content }: { id: string; content: string }) => {
             const tx = new Transaction();
             tx.moveCall({
-                target: `${PACKAGE_ID}::notes_app::update_note`,
+                target: `${PACKAGE_ID}::notes::update_note`,
                 arguments: [tx.object(id), tx.pure.string(content)],
             });
             return await signAndExecute({ transaction: tx, chain: 'sui:testnet' });

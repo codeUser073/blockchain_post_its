@@ -1,11 +1,7 @@
-/*
-/// Module: notes_app
-module notes_app::notes_app;
-*/
+
 module notes_app :: notes{
     use std::string;
-    use sui::tx_context;
-    use sui::tx_context::TxContext;
+
 
     /// Note Struct to hold note data
     public struct Note has key {
@@ -31,6 +27,15 @@ module notes_app :: notes{
     /// Public Function: get_content - retrieves the content of a note
     public fun get_content(note: &Note):  string::String {
         note.content
+    }
+
+    // Test-only constructor so tests can create Note values without accessing private fields
+    #[test_only]
+    public fun make_note_for_test(content: string::String, ctx: &mut TxContext): Note {
+        Note {
+            id: object::new(ctx),
+            content,
+        }
     }
 }
 
